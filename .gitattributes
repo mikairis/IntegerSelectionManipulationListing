@@ -1,0 +1,60 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+import java.util.*;
+public class Question2 
+{
+    public static void main(String[] args) 
+    {
+        int userInteger;
+        int sentinel = -99;
+        int smallest;
+        int largest;
+        double count = 0;
+        double sum = 0;
+        String integerOutput = "";
+        
+        System.out.println("This programme requires you to provide a list of non-negative integers from the user.");
+        System.out.println("It will output the (1) largest integer, (2) smallest integer, and (3) average of all the integers.");
+        System.out.println("To indicate that you have completed your integer entry, please key in [-99] to begin computation. \n");
+        System.out.println("Please enter your first integer: ");
+        
+        Scanner kb = new Scanner(System.in);
+        userInteger = kb.nextInt();
+        
+        smallest = userInteger;
+        largest = userInteger;
+        if(userInteger == -99) // to provision if user enters sentinel number as the first set of numbers
+        {
+            System.out.println("You entered the sentinel number! Programme Terminated");
+        }
+        else
+        {
+            while (userInteger != sentinel) // loop if user did not enter sentinel number
+                                            // continue to add number to the counter
+            {
+                integerOutput += userInteger + " ";
+                System.out.println("Integer(s) entered: ( " + integerOutput + ")");
+                sum = userInteger + sum;
+                if (userInteger < smallest)
+                {
+                    smallest = userInteger; // assigning smallest integer entered
+                }
+                else if( userInteger > largest)
+                {
+                    largest = userInteger; // assigning largest integer entered
+                }
+                System.out.println("Please enter your next integer or enter [-99] to end: ");
+                userInteger = kb.nextInt();
+            
+                count ++;
+            }
+        
+            double avgInt = sum/count; // computing average
+        
+            System.out.println("Sum of integers entered: " + sum);
+            System.out.println("Number of integers entered: " + count);
+            System.out.println("Your smallest integer entered is " + smallest + " and your largest integer entered is " + largest + ".");
+            System.out.println("The average of all integers entered is " + sum + " / " + count + " = " + avgInt + ".");
+        }
+    }
+}
